@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IUser } from 'src/app/entity/User';
-import { ApiService } from 'src/app/service/http.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-app-welcome',
@@ -17,47 +17,51 @@ export class AppWelcomeComponent implements OnInit {
   public username: string = '';
   public password: string = '';
 
-  constructor(private apiService: ApiService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-selectLogin(): void {
-  this.displayLogin = true;
-}
+  selectLogin(): void {
+    this.displayLogin = true;
+  }
 
-selectRegister(): void {
-  this.displayRegister = true;
-}
+  selectRegister(): void {
+    this.displayRegister = true;
+  }
 
-commandExecLogin(): void {
-  this.apiService.login({
-    username: this.username,
-    password: this.password,
-  } as IUser).subscribe();
-}
+  commandExecLogin(): void {
+    this.authService.login({
+      username: this.username,
+      password: this.password,
+    } as IUser);
+    this.displayLogin = false;
+  }
 
-commandAbortLogin(): void {
-  this.resetFields();
-  this.displayLogin = false;
-}
+  commandAbortLogin(): void {
+    this.resetFields();
+    this.displayLogin = false;
+  }
 
-commandExecRegister(): void {
-  this.apiService.login({
-    username: this.username,
-    password: this.password,
-  } as IUser).subscribe();
-}
+  commandExecRegister(): void {
+    this.authService.register({
+      username: this.username,
+      firstName: this.firstname,
+      lastName: this.lastname,
+      password: this.password,
+    } as IUser);
+    this.displayRegister = false;
+  }
 
-commandAbortRegister(): void {
-  this.resetFields();
-  this.displayRegister = false;
-}
+  commandAbortRegister(): void {
+    this.resetFields();
+    this.displayRegister = false;
+  }
 
-private resetFields(): void {
-  this.firstname = '';
-  this.lastname = '';
-  this.username = '';
-  this.password = '';
-}
+  private resetFields(): void {
+    this.firstname = '';
+    this.lastname = '';
+    this.username = '';
+    this.password = '';
+  }
 }

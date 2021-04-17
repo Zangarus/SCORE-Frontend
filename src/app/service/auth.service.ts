@@ -9,19 +9,19 @@ export class AuthService {
 
   constructor(private apiService: ApiService) { }
 
-  private setSession(authResult: any) {
-    localStorage.setItem('token', authResult.token);
+  private setSession(token: string) {
+    localStorage.setItem('token', token);
   }
 
   register(user: IUser) {
     this.apiService.register(user).subscribe(
-      resp => this.setSession
+      (resp: any) => this.setSession(resp.token)
     )
   }
 
   login(user: IUser) {
     this.apiService.login(user).subscribe(
-      resp => this.setSession
+      (resp: any) => this.setSession(resp.token)
     )
   }
 
