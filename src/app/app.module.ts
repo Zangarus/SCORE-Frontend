@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {ChartModule} from 'primeng/chart';
+
 
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -42,7 +44,7 @@ import { ApiService } from './service/http.service';
     AppWelcomeComponent,
     AppProfileComponent,
     AppRankingComponent,
-    AppStatisticsComponent
+    AppStatisticsComponent,
 
   ],
   imports: [
@@ -65,7 +67,8 @@ import { ApiService } from './service/http.service';
     TableModule,
     MessageModule,
     MessagesModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChartModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
