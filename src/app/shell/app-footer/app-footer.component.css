@@ -1,0 +1,19 @@
+
+:host ::ng-deep .app-toolbar .p-toolbar .p-component {
+  padding: 0px;
+  align-items: center;
+}
+
+:host ::ng-deep .p-button {
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+}
+
+:host ::ng-deep .p-button-icon {
+  font-size: 2rem;
+  color: var(--green-500);
+}
