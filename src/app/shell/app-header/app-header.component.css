@@ -1,0 +1,12 @@
+.app-title-text {
+  color: var(--green-500);
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+:host ::ng-deep .app-title .p-card .p-card-body {
+  padding: 0px;
+  padding-left: 10px;
+}
+
+
