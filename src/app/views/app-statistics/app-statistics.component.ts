@@ -11,8 +11,15 @@ export class AppStatisticsComponent implements OnInit {
 
   data: any;
   chartOptions: any;
+  basicData: any;
+  basicOptions: any;
 
   constructor() {
+
+  }
+
+  ngOnInit(): void {
+
     this.data = {
       labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
       datasets: [
@@ -22,7 +29,8 @@ export class AppStatisticsComponent implements OnInit {
           borderColor: '#b8236a',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
-          pointRadius:0
+          pointRadius:0,
+          borderWidth:5
         },
         {
           label: 'Öffentliche',
@@ -30,7 +38,8 @@ export class AppStatisticsComponent implements OnInit {
           borderColor: '#d17a29',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
-          pointRadius:0
+          pointRadius:0,
+          borderWidth:5
         },
         {
           label: 'Zu Fuß',
@@ -38,7 +47,8 @@ export class AppStatisticsComponent implements OnInit {
           borderColor: '#2592b5',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
-          pointRadius:0
+          pointRadius:0,
+          borderWidth:5
         }
       ]
     }
@@ -61,9 +71,38 @@ export class AppStatisticsComponent implements OnInit {
         }]
       }
     }
-  }
 
-  ngOnInit(): void {
+    this.basicData = {
+      labels: ['January', 'February', 'March', 'April', 'May'],
+      datasets: [
+        {
+          label: 'Score',
+          backgroundColor: '#1c80cf',
+          data: [5800, 4650, 11000, 9900, 7680]
+        }
+      ]
+    };
+
+    this.basicOptions = {
+      legend: {position: 'bottom'},
+      title: {
+        display: true,
+        text: 'Monatliche Punktzahlen'
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display:false
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display:false
+          }
+        }]
+      }
+    }
+
   }
 
 }
