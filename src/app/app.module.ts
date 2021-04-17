@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {ChartModule} from 'primeng/chart';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ChartModule } from 'primeng/chart';
 
 
-import {CardModule} from 'primeng/card';
-import {ToolbarModule} from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
-import {MenuModule} from 'primeng/menu';
-import {FormsModule} from '@angular/forms';
-import {DropdownModule} from 'primeng/dropdown';
-import {KnobModule} from 'primeng/knob';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {DialogModule} from 'primeng/dialog';
-import {PasswordModule} from 'primeng/password';
-import {InputTextModule} from 'primeng/inputtext';
-import {TableModule} from 'primeng/table';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { KnobModule } from 'primeng/knob';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { DialogModule } from 'primeng/dialog';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,7 @@ import { AppProfileComponent } from './views/app-profile/app-profile.component';
 import { AppRankingComponent } from './views/app-ranking/app-ranking.component';
 import { AppStatisticsComponent } from './views/app-statistics/app-statistics.component';
 import { ApiService } from './service/http.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 
 @NgModule({
@@ -70,7 +71,14 @@ import { ApiService } from './service/http.service';
     ProgressBarModule,
     ChartModule
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

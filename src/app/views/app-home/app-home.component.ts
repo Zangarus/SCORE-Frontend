@@ -16,7 +16,6 @@ interface Vehicle {
 export class AppHomeComponent implements OnInit {
 
   user: IUser = {} as IUser;
-  score: number = 40
   valueChallenge: number = 10
   valueChallengeFriend: number = 30
 
@@ -46,6 +45,9 @@ export class AppHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.user.entries) {
+      this.kilometers = this.user.entries.reduce((sum, current) => sum + current.distance, 0);
+    }
   }
 
 }
