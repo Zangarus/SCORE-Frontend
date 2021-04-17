@@ -16,6 +16,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {InputTextModule} from 'primeng/inputtext';
+import {TableModule} from 'primeng/table';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +62,7 @@ import { ApiService } from './service/http.service';
     FormsModule,
     HttpClientModule,
     InputTextModule,
+    TableModule,
     MessageModule,
     MessagesModule,
     ProgressBarModule

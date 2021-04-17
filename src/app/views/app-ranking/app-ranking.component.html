@@ -1,1 +1,30 @@
-<p>app-ranking works!</p>
+<div>
+  <div class="p-align-stretch vertical-container">
+    <p-card styleClass="p-card-shadow">
+      <p-table
+        [value]="users"
+        styleClass="p-datatable-sm"
+        [scrollable]="true"
+        scrollHeight="flex"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Score</th>
+            <th>Name</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.score }}</td>
+            <td>{{ product.firstName }} {{ product.lastName }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length">No ranking records found</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
