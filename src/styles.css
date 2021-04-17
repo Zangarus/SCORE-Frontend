@@ -9,8 +9,8 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 75px 1fr 75px;
+
+  grid-template-rows: 75px auto  75px;
   grid-gap: 5px;
   grid-template-areas:
     "header"
@@ -24,14 +24,12 @@ app-header {
   font-size: 35px;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   grid-area: header;
-  /* padding: 10px 20px; */
   background-color: var(--surface-50);
 }
 
 app-main {
   grid-area: content;
   background-color: #424242;
-  /* padding: 25px; */
 }
 
 app-footer {
@@ -39,6 +37,5 @@ app-footer {
   background-color: var(--surface-50);
   color: white;
   text-align: center;
-  /* padding: 10px 0; */
 }
 
