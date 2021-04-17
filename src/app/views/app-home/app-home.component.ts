@@ -20,6 +20,13 @@ export class AppHomeComponent implements OnInit {
   vehicles : Vehicle[];
   selectedVehicle : string ='';
 
+  displayModal: boolean = false;
+  kilometers: number = 0
+
+  showModalDialog() {
+      this.displayModal = true;
+  }
+
   constructor() {
 
     this.vehicles = [

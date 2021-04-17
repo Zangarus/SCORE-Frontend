@@ -3,9 +3,9 @@
 }
 
 .progressBar{
-  width: 75%;
+  width: 100%;
 }
 
-.star-icon{
-  width: 25%;
+.activity{
+  vertical-align: middle;
 }

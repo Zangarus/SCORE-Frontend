@@ -1,20 +1,74 @@
 <div class="frame">
-  <div class="p-field p-grid">
-    <div class="star-icon">
-      <i class="pi pi-star-o" style="font-size: 3rem"></i>
+  <div class="p-grid">
+    <div class="p-col-fixed" style="width: 80px">
+      <i class="pi pi-star-o" style="font-size: 4rem"></i>
     </div>
-    <div class="progressBar">
-      Challenge
-      <p-progressBar [value]="valueChallenge" [showValue]="false"></p-progressBar>
-      Challenge Friend
-      <p-progressBar [value]="valueChallengeFriend" [showValue]="false"></p-progressBar>
+    <div class="p-col">
+      <div class="progressBar">
+        Challenge
+        <p-progressBar
+          [value]="valueChallenge"
+          [showValue]="false"
+        ></p-progressBar>
+        Challenge Friend
+        <p-progressBar
+          [value]="valueChallengeFriend"
+          [showValue]="false"
+        ></p-progressBar>
+      </div>
     </div>
   </div>
+  <div class="p-field p-col-12 p-md-4">
+    <h3 class="p-mt-3">Score</h3>
+    <p-knob
+      [(ngModel)]="score"
+      [strokeWidth]="5"
+      [size]="200"
+      [readonly]="true"
+    ></p-knob>
+  </div>
 
-<div class="p-field p-col-12 p-md-4">
-  <h5 class="p-mt-3">Score</h5>
-  <p-knob [(ngModel)]="score" [strokeWidth]="5" [size]="200"></p-knob>
-</div>
-<p-dropdown [options]="vehicles" [(ngModel)]="selectedVehicle" placeholder="Select a Vehicle" optionLabel="name" optionValue="code"></p-dropdown>
+  <p-button
+    (click)="showModalDialog()"
+    icon="pi pi-plus-circle"
+    label="Aktivität manuell eintragen"
+  ></p-button>
+  <p-dialog
+    header="Neue Strecke"
+    [(visible)]="displayModal"
+    [modal]="true"
+    [style]="{ width: '90vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <p>Zurückgelegte Kilometer:</p>
+    <input type="text" pInputText [(ngModel)]="kilometers" /> km
+    <p>Fortbewegungsmittel:</p>
+    <p-dropdown
+      [options]="vehicles"
+      [(ngModel)]="selectedVehicle"
+      placeholder="Select a Vehicle"
+      optionLabel="name"
+      optionValue="code"
+    ></p-dropdown>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="displayModal = false"
+        label="Ok"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
 
+  <!-- <div class="p-grid">
+    <div class="p-col-fixed" style="width:80px">
+      <button pButton pRipple type="button" icon="pi pi-plus-circle" class="p-button-rounded p-button-lg p-button-text"></button>
+    </div>
+    <div class="p-col activity">
+      Aktivität manuell eintragen
+    </div>
+  </div>
+ -->
 </div>
