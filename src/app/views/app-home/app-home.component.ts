@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IEntry, TravelType } from 'src/app/entity/Entry';
 import { IUser } from 'src/app/entity/User';
 import { ApiService } from 'src/app/service/http.service';
 
@@ -29,10 +30,21 @@ export class AppHomeComponent implements OnInit {
     this.displayModal = true;
   }
 
+  commandExecModal(): void {
+    //TODO correctly handle enum
+    this.apiService.addEntry({ distance: this.kilometers, travelType: (<any>TravelType)[this.selectedVehicle] } as IEntry)
+      .subscribe();
+    console.log(this.kilometers);
+    console.log(this.selectedVehicle);
+    //TODO update User Score in subscribe method
+    this.displayModal = false;
+  }
+
   constructor(private apiService: ApiService) {
     this.vehicles = [
-      { name: 'Auto', code: 'aut' },
-      { name: 'Fahrrad', code: 'fahr' }
+      { name: 'FOOT', code: 'foot' },
+      { name: 'CAR', code: 'car' },
+      { name: 'PLANE', code: 'plane' }
     ];
     const username = localStorage.getItem('username')
     if (username) {
@@ -45,9 +57,6 @@ export class AppHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.user.entries) {
-      this.kilometers = this.user.entries.reduce((sum, current) => sum + current.distance, 0);
-    }
   }
 
 }
