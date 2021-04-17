@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ProgressBarModule} from 'primeng/progressbar';
+
 
 
 import {CardModule} from 'primeng/card';
@@ -54,7 +58,10 @@ import { ApiService } from './service/http.service';
     FormsModule,
     HttpClientModule,
     InputTextModule,
-    TableModule
+    TableModule,
+    MessageModule,
+    MessagesModule,
+    ProgressBarModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
