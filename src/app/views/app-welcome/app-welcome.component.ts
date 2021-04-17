@@ -31,7 +31,6 @@ selectRegister(): void {
 }
 
 commandExecLogin(): void {
-  this.displayLogin = true;
   this.apiService.login({
     username: this.username,
     password: this.password,
@@ -44,7 +43,6 @@ commandAbortLogin(): void {
 }
 
 commandExecRegister(): void {
-  this.displayLogin = true;
   this.apiService.login({
     username: this.username,
     password: this.password,
@@ -53,7 +51,7 @@ commandExecRegister(): void {
 
 commandAbortRegister(): void {
   this.resetFields();
-  this.displayLogin = false;
+  this.displayRegister = false;
 }
 
 private resetFields(): void {
