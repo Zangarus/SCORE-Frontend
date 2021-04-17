@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/entity/User';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -17,7 +18,7 @@ export class AppWelcomeComponent implements OnInit {
   public username: string = '';
   public password: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -34,13 +35,12 @@ export class AppWelcomeComponent implements OnInit {
     this.authService.login({
       username: this.username,
       password: this.password,
-    } as IUser);
-    this.displayLogin = false;
+    } as IUser).subscribe(data => this.router.navigate(['/home']))
+    this.resetFields()
   }
 
   commandAbortLogin(): void {
     this.resetFields();
-    this.displayLogin = false;
   }
 
   commandExecRegister(): void {
@@ -49,13 +49,12 @@ export class AppWelcomeComponent implements OnInit {
       firstName: this.firstname,
       lastName: this.lastname,
       password: this.password,
-    } as IUser);
-    this.displayRegister = false;
+    } as IUser).subscribe(data => this.router.navigate(['/home']))
+    this.resetFields()
   }
 
   commandAbortRegister(): void {
     this.resetFields();
-    this.displayRegister = false;
   }
 
   private resetFields(): void {
@@ -63,5 +62,7 @@ export class AppWelcomeComponent implements OnInit {
     this.lastname = '';
     this.username = '';
     this.password = '';
+    this.displayRegister = false;
+    this.displayLogin = false;
   }
 }

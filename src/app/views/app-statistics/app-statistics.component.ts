@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -11,7 +12,7 @@ export class AppStatisticsComponent implements OnInit {
 
   data: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -28,6 +29,17 @@ export class AppStatisticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkLoginToken();
   }
 
+
+
+  private checkLoginToken(): void {
+    if (localStorage.getItem('token')) {
+      console.log("Token available");
+      return;
+    } else {
+      this.router.navigate(['/welcome']);
+    }
+  }
 }
