@@ -12,6 +12,8 @@ export class AppWelcomeComponent implements OnInit {
   public displayLogin: boolean = false;
   public displayRegister: boolean = false;
 
+  public firstname: string = '';
+  public lastname: string = '';
   public username: string = '';
   public password: string = '';
 
@@ -37,9 +39,27 @@ commandExecLogin(): void {
 }
 
 commandAbortLogin(): void {
-  this.username = '';
-  this.password = '';
+  this.resetFields();
   this.displayLogin = false;
 }
 
+commandExecRegister(): void {
+  this.displayLogin = true;
+  this.apiService.login({
+    username: this.username,
+    password: this.password,
+  } as IUser).subscribe();
+}
+
+commandAbortRegister(): void {
+  this.resetFields();
+  this.displayLogin = false;
+}
+
+private resetFields(): void {
+  this.firstname = '';
+  this.lastname = '';
+  this.username = '';
+  this.password = '';
+}
 }

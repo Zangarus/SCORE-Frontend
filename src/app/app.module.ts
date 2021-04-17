@@ -11,7 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
 import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
-
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +50,8 @@ import { ApiService } from './service/http.service';
     DialogModule,
     PasswordModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    InputTextModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
