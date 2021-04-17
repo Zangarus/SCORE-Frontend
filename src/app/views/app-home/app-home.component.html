@@ -1,1 +1,20 @@
-<p>app-home works!</p>
+<div class="frame">
+  <div class="p-field p-grid">
+    <div class="star-icon">
+      <i class="pi pi-star-o" style="font-size: 3rem"></i>
+    </div>
+    <div class="progressBar">
+      Challenge
+      <p-progressBar [value]="valueChallenge" [showValue]="false"></p-progressBar>
+      Challenge Friend
+      <p-progressBar [value]="valueChallengeFriend" [showValue]="false"></p-progressBar>
+    </div>
+  </div>
+
+<div class="p-field p-col-12 p-md-4">
+  <h5 class="p-mt-3">Score</h5>
+  <p-knob [(ngModel)]="score" [strokeWidth]="5" [size]="200"></p-knob>
+</div>
+<p-dropdown [options]="vehicles" [(ngModel)]="selectedVehicle" placeholder="Select a Vehicle" optionLabel="name" optionValue="code"></p-dropdown>
+
+</div>
