@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/entity/User';
+import { ApiService } from 'src/app/service/http.service';
 
 interface Vehicle {
   name: string,
@@ -13,32 +15,37 @@ interface Vehicle {
 
 export class AppHomeComponent implements OnInit {
 
-  score : number = 40
-  valueChallenge : number = 10
-  valueChallengeFriend : number =30
+  user: IUser = {} as IUser;
+  score: number = 40
+  valueChallenge: number = 10
+  valueChallengeFriend: number = 30
 
-  vehicles : Vehicle[];
-  selectedVehicle : string ='';
+  vehicles: Vehicle[];
+  selectedVehicle: string = '';
 
   displayModal: boolean = false;
   kilometers: number = 0
 
   showModalDialog() {
-      this.displayModal = true;
+    this.displayModal = true;
   }
 
-  constructor() {
-
+  constructor(private apiService: ApiService) {
     this.vehicles = [
-      {name: 'Auto', code: 'aut'},
-      {name: 'Fahrrad', code: 'fahr'}
-  ];
-
-
+      { name: 'Auto', code: 'aut' },
+      { name: 'Fahrrad', code: 'fahr' }
+    ];
+    const username = localStorage.getItem('username')
+    if (username) {
+      this.apiService.findUser(username).subscribe(
+        data => this.user = data
+      )
+    } else {
+      //TODO redirect to login
+    }
   }
 
   ngOnInit(): void {
-
   }
 
 }

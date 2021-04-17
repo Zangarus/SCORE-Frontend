@@ -17,15 +17,22 @@ export class AuthService {
     this.apiService.register(user).subscribe(
       (resp: any) => this.setSession(resp.token)
     )
+    if (user.username) {
+      localStorage.setItem('username', user.username)
+    }
   }
 
   login(user: IUser) {
     this.apiService.login(user).subscribe(
       (resp: any) => this.setSession(resp.token)
     )
+    if (user.username) {
+      localStorage.setItem('username', user.username)
+    }
   }
 
   logout() {
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
+    localStorage.removeItem('userrname')
   }
 }
