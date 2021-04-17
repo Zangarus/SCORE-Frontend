@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   addEntry(entry: IEntry) {
-    return this.http.post(this.apiUrl + 'entry/', entry, this.httpOptions);
+    return this.http.post(this.apiUrl + 'entry', entry, this.httpOptions);
   }
 }
 
