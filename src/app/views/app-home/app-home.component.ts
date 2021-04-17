@@ -31,7 +31,7 @@ export class AppHomeComponent implements OnInit {
   }
 
   commandExecModal(): void {
-    //TODO correctly handle 
+    //TODO correctly handle enum
     this.apiService.addEntry({ distance: this.kilometers, travelType: (<any>TravelType)[this.selectedVehicle] } as IEntry)
       .subscribe();
     console.log(this.kilometers);
