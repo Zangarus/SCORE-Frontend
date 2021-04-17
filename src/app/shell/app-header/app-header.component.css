@@ -4,6 +4,11 @@
   font-weight: bold;
 }
 
+.app-title img {
+  height: 50px;
+}
+
+
 :host ::ng-deep .app-title .p-card .p-card-body {
   padding: 0px;
   padding-left: 10px;

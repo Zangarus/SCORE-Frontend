@@ -7,7 +7,7 @@ import { IEntry } from '../entity/Entry';
 @Injectable({
   providedIn: 'root',
 })
-export class HttpService {
+export class ApiService {
   private apiUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
