@@ -1,1 +1,24 @@
-<p>app-ranking works!</p>
+<div>
+  <div class="p-align-stretch vertical-container">
+    <p-card styleClass="p-card-shadow">
+      <p-table [value]="users">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="score">
+              Score <p-sortIcon field="score"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">
+              Name <p-sortIcon field="name"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.score }}</td>
+            <td>{{ product.firstName }} {{ product.lastName }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
