@@ -20,7 +20,6 @@ export class AppHomeComponent implements OnInit {
   kilometers: number = 0;
   selectedVehicle: TravelType = 0;
 
-  score: number = 40;
   valueChallenge: number = 10;
   valueChallengeFriend: number = 30;
 
@@ -51,10 +50,11 @@ export class AppHomeComponent implements OnInit {
         },
         distance: this.kilometers,
         travelType: this.selectedVehicle,
+        passenger: 1,
         timestamp: new Date(),
       } as IEntry)
       .pipe(
-        tap((user: IUser) => (this.user = user)),
+        tap((user: IUser) => this.user = user),
         tap((user: IUser) =>
           this.messageService.add({
             severity: 'info',
@@ -78,14 +78,14 @@ export class AppHomeComponent implements OnInit {
 
   private loadTravelTypes(): Vehicle[] {
     return [
-      { code: TravelType.Foot, name: 'Zu Fuß' },
-      { code: TravelType.Bike, name: 'Fahrrad' },
-      { code: TravelType.eBike, name: 'Elektro-Fahrrad' },
-      { code: TravelType.Car, name: 'Auto / Taxi' },
-      { code: TravelType.eCar, name: 'Elektro-Auto / Taxi' },
-      { code: TravelType.Plane, name: 'Flugzeug' },
-      { code: TravelType.LocalTrain, name: 'Nahverkehr (Linien-Bus, S-Bahn)' },
-      { code: TravelType.LongTrain, name: 'Fernverkehr (Fernbus, Zug)' },
+      { code: TravelType.FOOT, name: 'Zu Fuß' },
+      { code: TravelType.BIKE, name: 'Fahrrad' },
+      { code: TravelType.EBIKE, name: 'Elektro-Fahrrad' },
+      { code: TravelType.CAR, name: 'Auto / Taxi' },
+      { code: TravelType.ECAR, name: 'Elektro-Auto / Taxi' },
+      { code: TravelType.PLANE, name: 'Flugzeug' },
+      { code: TravelType.NEARTRAIN, name: 'Nahverkehr (Linien-Bus, S-Bahn)' },
+      { code: TravelType.FARTRAIN, name: 'Fernverkehr (Fernbus, Zug)' },
     ];
   }
 
