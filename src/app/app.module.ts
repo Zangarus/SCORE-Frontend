@@ -6,6 +6,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ChartModule } from 'primeng/chart';
 
+import { EventBrokerModule } from 'ng-event-broker';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -51,6 +52,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    EventBrokerModule,
     CardModule,
     ToolbarModule,
     ButtonModule,

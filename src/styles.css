@@ -1,41 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
 
+html,
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  height: 100%; /* can also use viewport units (height: 100vh) */
   background-color: var(--surface-50);
 }
 
-.container {
-  display: grid;
-
-  grid-template-rows: 75px auto  75px;
-  grid-gap: 5px;
-  grid-template-areas:
-    "header"
-    "content"
-    "footer";
-  height: 100vh;
-}
-
-app-header {
-  color: white;
-  font-size: 35px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  grid-area: header;
+.app-container {
+  display: flex; /* displays flex-items (children) inline */
+  flex-direction: column; /* stacks them vertically */
+  height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
   background-color: var(--surface-50);
 }
 
-app-main {
-  grid-area: content;
-  background-color: #424242;
-}
-
-app-footer {
-  grid-area: footer;
+.app-area {
+  flex: 1; /* takes the remaining height of the "container" div */
+  overflow: auto; /* to scroll just the "main" div */
   background-color: var(--surface-50);
-  color: white;
-  text-align: center;
 }
 
+.app-head {
+  background-color: var(--surface-50);
+}
+
+.app-foot {
+  background-color: var(--surface-50);
+}

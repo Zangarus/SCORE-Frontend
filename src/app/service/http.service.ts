@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { IUser } from '../entity/User';
 import { IEntry } from '../entity/Entry';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,16 +18,21 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-  register(user: IUser) {
-    return this.http.post(this.apiUrl + 'user/register', user, this.httpOptions);
+  register(user: IUser) : Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'user/register', user, this.httpOptions);
   }
 
-  login(user: IUser) {
-    return this.http.post(this.apiUrl + 'user/login', user, this.httpOptions);
+  login(user: IUser) : Observable<any>{
+    console.log("login");
+    return this.http.post<any>(this.apiUrl + 'user/login', user, this.httpOptions);
   }
 
   findUser(username: string) {
     return this.http.get<IUser>(this.apiUrl + 'user/' + username, this.httpOptions);
+  }
+
+  findUsers() {
+    return this.http.get<IUser[]>(this.apiUrl + 'user/list', this.httpOptions);
   }
 
   getSummary(id: string) {
