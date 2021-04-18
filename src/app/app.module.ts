@@ -21,6 +21,7 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { AppRankingComponent } from './views/app-ranking/app-ranking.component';
 import { AppStatisticsComponent } from './views/app-statistics/app-statistics.component';
 import { ApiService } from './service/http.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -72,7 +74,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     MessagesModule,
     ProgressBarModule,
     ChartModule,
-    ToastModule
+    ToastModule,
+    InputNumberModule
   ],
   providers: [
     ApiService,
@@ -80,7 +83,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,63 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { IEntry, TravelType } from 'src/app/entity/Entry';
+import { MessageService } from 'primeng/api';
+import { tap } from 'rxjs/operators';
+import { IEntry, Vehicle, TravelType } from 'src/app/entity/Entry';
 import { IUser } from 'src/app/entity/User';
 import { ApiService } from 'src/app/service/http.service';
-
-interface Vehicle {
-  name: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-app-home',
   templateUrl: './app-home.component.html',
   styleUrls: ['./app-home.component.css'],
+  providers: [MessageService]
 })
 export class AppHomeComponent implements OnInit {
-  score: number = 40;
-  valueChallenge: number = 10;
-  valueChallengeFriend: number = 30;
   user: IUser = {} as IUser;
-
-
   vehicles: Vehicle[] = [];
-  selectedVehicle: string = '';
 
   displayModal: boolean = false;
   kilometers: number = 0;
+  selectedVehicle: TravelType = 0;
 
-  showModalDialog() {
-    this.displayModal = true;
-  }
+  score: number = 40;
+  valueChallenge: number = 10;
+  valueChallengeFriend: number = 30;
 
-  commandExecModal(): void {
-    //TODO correctly handle enum
-    this.apiService.addEntry({ distance: this.kilometers, travelType: (<any>TravelType)[this.selectedVehicle] } as IEntry)
-      .subscribe();
-    console.log(this.kilometers);
-    console.log(this.selectedVehicle);
-    //TODO update User Score in subscribe method
-    this.displayModal = false;
-  }
-
-  constructor(private router: Router, private apiService: ApiService) {
-
-    const username = localStorage.getItem('username')
-    if (username) {
-
-    } else {
-      //TODO redirect to login
-    }
-  }
+  constructor(private router: Router, private messageService: MessageService, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.checkLoginToken();
+    this.vehicles = this.loadTravelTypes();
+  }
 
-    this.vehicles = [
-      { name: 'FOOT', code: 'foot' },
-      { name: 'CAR', code: 'car' },
-      { name: 'PLANE', code: 'plane' }
+  showEntryDialog() {
+    this.resetDialogFields();
+    this.displayModal = true;
+  }
+
+  commandAccept(): void {
+    //TODO correctly handle enum
+    this.apiService
+      .addEntry({
+        username: this.user.username,
+        distance: this.kilometers,
+        travelType: this.selectedVehicle,
+        timestamp: new Date()
+      } as IEntry)
+      .pipe(
+        tap((user:IUser) => this.user = user),
+        tap((user:IUser) => this.messageService.add({severity:'info', summary:'New Score', detail:'Your new Score is: ' + user.score?.absScore}))
+      );
+
+  }
+
+  commandAbort(): void {
+    this.resetDialogFields();
+  }
+
+  resetDialogFields(): void {
+    this.displayModal = false;
+    this.kilometers = 0;
+    this.selectedVehicle = 0;
+  }
+
+  private loadTravelTypes(): Vehicle[] {
+    return [
+      { code: TravelType.Foot, name: 'Zu Fuß' },
+      { code: TravelType.Bike, name: 'Fahrrad' },
+      { code: TravelType.eBike, name: 'Elektro-Fahrrad' },
+      { code: TravelType.Car, name: 'Auto / Taxi' },
+      { code: TravelType.eCar, name: 'Elektro-Auto / Taxi' },
+      { code: TravelType.Plane, name: 'Flugzeug' },
+      { code: TravelType.LocalTrain, name: 'Nahverkehr (Linien-Bus, S-Bahn)' },
+      { code: TravelType.LongTrain, name: 'Fernverkehr (Fernbus, Zug)' },
     ];
   }
 
@@ -65,12 +79,12 @@ export class AppHomeComponent implements OnInit {
     const username = localStorage.getItem('username');
     if (username === null) {
       this.router.navigate(['/welcome']);
+    } else {
+      this.updateUserData(username);
     }
-    else
-    {
-      this.apiService.findUser(username).subscribe(
-        data => this.user = data
-      )
-    }
+  }
+
+  private updateUserData(username: string): void {
+    this.apiService.findUser(username).subscribe((data) => (this.user = data));
   }
 }

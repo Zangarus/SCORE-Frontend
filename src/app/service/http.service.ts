@@ -40,8 +40,8 @@ export class ApiService {
     return this.http.get(this.apiUrl + 'user/summary' + id, this.httpOptions);
   }
 
-  addEntry(entry: IEntry) : Observable<any>{
-    return this.http.post(this.apiUrl + 'entry', entry, this.httpOptions);
+  addEntry(entry: IEntry) : Observable<IUser>{
+    return this.http.post<IUser>(this.apiUrl + 'entry', entry, this.httpOptions);
   }
 }
 

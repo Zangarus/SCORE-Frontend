@@ -6,16 +6,17 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { EventBrokerService } from 'ng-event-broker';
 import { Events } from '../events/event.model';
-import { ThrowStmt } from '@angular/compiler';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   constructor(
     private router: Router,
     private eventService: EventBrokerService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private messageService: MessageService
   ) {}
 
   private setSession(token: string) {
@@ -28,7 +29,8 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap((data) => this.eventService.publishEvent(Events.login))
+      tap(data => this.eventService.publishEvent(Events.login)),
+      tap(data => this.messageService.add({severity:'info', summary:'Registrierung', detail:'Registrierung gesendet!'}))
     );
   }
 
@@ -38,7 +40,8 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap((data) => this.eventService.publishEvent(Events.login))
+      tap((data) => this.eventService.publishEvent(Events.login)),
+      tap(data => this.messageService.add({severity:'info', summary:'Anmeldung', detail:'Anmeldung gesendet!'}))
     );
   }
 
@@ -47,6 +50,7 @@ export class AuthService {
     localStorage.removeItem('userrname');
     this.eventService.publishEvent(Events.logout);
     this.router.navigate(['/welcome']);
+    this.messageService.add({severity:'info', summary:'Abmeldung', detail:'Abmeldung gesendet!'})
   }
 
   private setUserNameIfAvail(user: IUser): void {
