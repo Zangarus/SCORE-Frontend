@@ -25,35 +25,35 @@ export class AppRankingComponent implements OnInit {
     this.loadServerData();
   }
 
-  private loadMockData(): void {
-    this.users = [
-      { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
-      { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
-      { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
-      { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
-      { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
-      { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
-      { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
-      { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
-      { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
-      { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
-      { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
-      { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
-      { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
-      { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
-      { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
-      { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
-      { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
-      { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
-      { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
-      { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
-      { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
-      { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
-      { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
-      { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
-      { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
-    ];
-  }
+  // private loadMockData(): void {
+  //   this.users = [
+  //     { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
+  //     { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
+  //     { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
+  //     { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
+  //     { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
+  //     { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
+  //     { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
+  //     { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
+  //     { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
+  //     { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
+  //     { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
+  //     { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
+  //     { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
+  //     { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
+  //     { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
+  //     { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
+  //     { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
+  //     { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
+  //     { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
+  //     { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
+  //     { firstName: 'Andreas', lastName: 'Stutz', score: 143 },
+  //     { firstName: 'Michelle', lastName: 'Blumenstein', score: 248 },
+  //     { firstName: 'Simon', lastName: 'Rochlin', score: -358 },
+  //     { firstName: 'Melanie', lastName: 'Wassmer', score: 23 },
+  //     { firstName: 'Marwin', lastName: 'Madsen', score: 415 },
+  //   ];
+  // }
 
   public loadServerData(): void {
     console.log('loadServerData');
@@ -70,6 +70,7 @@ export class AppRankingComponent implements OnInit {
         })
       )
       .subscribe((data) => {
+        console.log(data);
         this.users = data;
         this.messageService.add({
           severity: 'success',

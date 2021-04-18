@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventBrokerService } from 'ng-event-broker';
-import { MenuItem } from 'primeng/api';
-import { Events } from 'src/app/events/event.model';
+
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,21 +10,17 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AppFooterComponent implements OnInit {
 
-  constructor(private router: Router, private eventService: EventBrokerService, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
 
-  public loggedIn :boolean = false;
+  public loggedIn: boolean = false;
 
 
   ngOnInit() {
     this.checkLoginToken();
-    this.eventService.subscribeEvent(Events.login).subscribe(() => {
-      this.loggedIn = true;
-    })
-    this.eventService.subscribeEvent(Events.logout).subscribe(() => {
-      this.loggedIn = false;
-    })
+    this.authService.onLogin.subscribe(() => this.loggedIn = true);
+    this.authService.onLogout.subscribe(() => this.loggedIn = false);
   }
 
 

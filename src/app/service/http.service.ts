@@ -23,7 +23,6 @@ export class ApiService {
   }
 
   login(user: IUser) : Observable<any>{
-    console.log("login");
     return this.http.post<any>(this.apiUrl + 'user/login', user, this.httpOptions);
   }
 
@@ -32,7 +31,6 @@ export class ApiService {
   }
 
   findUsers() : Observable<IUser[]>{
-    console.log("FindUsers2");
     return this.http.get<IUser[]>(this.apiUrl + 'user/all', this.httpOptions);
   }
 
@@ -40,8 +38,9 @@ export class ApiService {
     return this.http.get(this.apiUrl + 'user/summary' + id, this.httpOptions);
   }
 
-  addEntry(entry: IEntry) : Observable<any>{
-    return this.http.post(this.apiUrl + 'entry', entry, this.httpOptions);
+  addEntry(entry: IEntry) : Observable<IUser>{
+    console.log(entry);
+    return this.http.post<IUser>(this.apiUrl + 'entry', entry, this.httpOptions);
   }
 }
 

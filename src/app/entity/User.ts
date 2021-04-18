@@ -5,6 +5,15 @@ export interface IUser {
     password?: string;
     firstName: string;
     lastName: string;
-    score?: number;
+    score?: IScoreData;
     entries?: IEntry[];
+}
+
+export interface IScoreData {
+  id: string;
+  beginDate?: Date;
+  endDate?: Date;
+  absScore: number;
+  relScore: number;
+  emScore: number;
 }
