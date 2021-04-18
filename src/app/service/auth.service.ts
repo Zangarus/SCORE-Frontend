@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../entity/User';
 import { ApiService } from './http.service';
@@ -10,6 +10,10 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root'
 })
 export class AuthService {
+
+  public onLogin: EventEmitter<void> = new EventEmitter<void>();
+  public onLogout: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -26,7 +30,7 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap(data => /*TODO Login Event*/ {}),
+      tap(data => this.onLogin.emit()),
       tap(data => this.messageService.add({severity:'info', summary:'Registrierung', detail:'Registrierung gesendet!'}))
     );
   }
@@ -37,7 +41,7 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap((data) => /*TODO Login Event*/ {}),
+      tap((data) => this.onLogin.emit()),
       tap(data => this.messageService.add({severity:'info', summary:'Anmeldung', detail:'Anmeldung gesendet!'}))
     );
   }
@@ -45,7 +49,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userrname');
-    //TODO Logout EVENT
+    this.onLogout.emit()
     this.router.navigate(['/welcome']);
     this.messageService.add({severity:'info', summary:'Abmeldung', detail:'Abmeldung gesendet!'})
   }
