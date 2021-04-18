@@ -86,11 +86,11 @@ export class AppStatisticsComponent implements OnInit {
             312,
             312,
           ],
-          borderColor: '#b8236a',
+          borderColor: '#2a602c',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
           pointRadius: 0,
-          borderWidth: 5,
+          borderWidth: 2,
         },
         {
           label: 'Öffentliche',
@@ -127,11 +127,11 @@ export class AppStatisticsComponent implements OnInit {
             110,
             110,
           ],
-          borderColor: '#d17a29',
+          borderColor: '#4caf50',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
           pointRadius: 0,
-          borderWidth: 5,
+          borderWidth: 2,
         },
         {
           label: 'Zu Fuß',
@@ -168,19 +168,26 @@ export class AppStatisticsComponent implements OnInit {
             101,
             102,
           ],
-          borderColor: '#2592b5',
+          borderColor: '#90cd93',
           backgroundColor: 'rgba(0, 0, 0, 0)',
           cubicInterpolationMode: 'monotone',
           pointRadius: 0,
-          borderWidth: 5,
+          borderWidth: 2,
         },
       ],
     };
     this.chartOptions = {
-      legend: { position: 'bottom' },
+      color:"white",
+      legend: { 
+        position: 'bottom',
+        labels: {
+              fontColor: 'white'
+          }
+      },
       title: {
         display: true,
         text: 'Hinterlegte Kilometer pro Transportmittel',
+        fontColor:"white"
       },
       scales: {
         xAxes: [
@@ -188,6 +195,9 @@ export class AppStatisticsComponent implements OnInit {
             gridLines: {
               display: false,
             },
+            ticks: {
+              fontColor:"white"
+            }
           },
         ],
         yAxes: [
@@ -195,6 +205,9 @@ export class AppStatisticsComponent implements OnInit {
             gridLines: {
               display: false,
             },
+            ticks: {
+              fontColor:"white"
+            }
           },
         ],
       },
@@ -205,17 +218,23 @@ export class AppStatisticsComponent implements OnInit {
       datasets: [
         {
           label: 'Score',
-          backgroundColor: '#1c80cf',
+          backgroundColor: '#4caf50',
           data: [5800, 4650, 11000, 9900, 7680],
         },
       ],
     };
 
     this.basicOptions = {
-      legend: { position: 'bottom' },
+      legend: { 
+        position: 'bottom',
+        labels: {
+          fontColor: 'white'
+        }
+      },
       title: {
         display: true,
         text: 'Monatliche Punktzahlen',
+        fontColor:"white"
       },
       scales: {
         xAxes: [
@@ -223,6 +242,9 @@ export class AppStatisticsComponent implements OnInit {
             gridLines: {
               display: false,
             },
+            ticks: {
+              fontColor:"white"
+            }
           },
         ],
         yAxes: [
@@ -230,6 +252,9 @@ export class AppStatisticsComponent implements OnInit {
             gridLines: {
               display: false,
             },
+            ticks: {
+              fontColor:"white"
+            }
           },
         ],
       },

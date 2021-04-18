@@ -1,9 +1,11 @@
-<div class="card p-p-1">
-  <h5 class="p-text-center">Path</h5>
+<div style="background-color: #1f2d40; height:80vh">
+  <h1 class="p-text-center" style="color:'white'">Deine persönlichen Statistiken</h1>
+  <div class="card p-py-1 p-px-4">
   <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
 </div>
 
-<div class="card">
-  <h5 class="p-text-center">Score</h5>
+<div class="card p-py-1 p-px-4">
   <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
 </div>
+</div>
+
