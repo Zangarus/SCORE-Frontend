@@ -20,7 +20,7 @@ import { DialogModule } from 'primeng/dialog';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
-
+import {ToastModule} from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,7 +71,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     MessageModule,
     MessagesModule,
     ProgressBarModule,
-    ChartModule
+    ChartModule,
+    ToastModule
   ],
   providers: [
     ApiService,
