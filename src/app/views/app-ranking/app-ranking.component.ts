@@ -70,6 +70,7 @@ export class AppRankingComponent implements OnInit {
         })
       )
       .subscribe((data) => {
+        console.log(data);
         this.users = data;
         this.messageService.add({
           severity: 'success',

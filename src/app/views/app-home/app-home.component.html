@@ -14,7 +14,7 @@
   </div>
   <div class="p-field p-col-12 p-md-4 p-text-center">
     <h3 class="p-mt-3">Score</h3>
-    <p-knob [(ngModel)]="user.score" [strokeWidth]="5" [size]="200" [readonly]="true"></p-knob>
+    <p-knob [ngModel]="user.score!.absScore" [strokeWidth]="5" [size]="200" [readonly]="true"></p-knob>
   </div>
   <div class="p-text-center">
     <p-button (click)="showEntryDialog()" icon="pi pi-plus-circle" label="Aktivität manuell eintragen"></p-button>

@@ -20,6 +20,7 @@ export class AppFooterComponent implements OnInit {
 
 
   ngOnInit() {
+    this.checkLoginToken();
     this.authService.onLogin.subscribe(() => this.loggedIn = true);
     this.authService.onLogout.subscribe(() => this.loggedIn = false);
   }

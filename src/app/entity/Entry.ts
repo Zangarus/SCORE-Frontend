@@ -1,3 +1,5 @@
+import { IUser } from "./User";
+
 export enum TravelType {
     Foot = 1,
     Bike,
@@ -10,7 +12,7 @@ export enum TravelType {
 }
 
 export interface IEntry {
-    username: string;
+    user: IUser;
     timestamp: Date;
     distance: number;
     travelType: TravelType;

@@ -28,10 +28,10 @@
             <th>Name</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-user>
           <tr>
-            <td>{{ product.score }}</td>
-            <td>{{ product.firstName }} {{ product.lastName }}</td>
+            <td>{{ user.score.absScore }}</td>
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

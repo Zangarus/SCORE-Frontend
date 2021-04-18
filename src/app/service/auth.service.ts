@@ -59,4 +59,5 @@ export class AuthService {
       localStorage.setItem('username', user.username);
     }
   }
+
 }

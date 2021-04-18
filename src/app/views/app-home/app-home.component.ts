@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/service/http.service';
   selector: 'app-app-home',
   templateUrl: './app-home.component.html',
   styleUrls: ['./app-home.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class AppHomeComponent implements OnInit {
   user: IUser = {} as IUser;
@@ -24,7 +24,11 @@ export class AppHomeComponent implements OnInit {
   valueChallenge: number = 10;
   valueChallengeFriend: number = 30;
 
-  constructor(private router: Router, private messageService: MessageService, private apiService: ApiService) {}
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.checkLoginToken();
@@ -37,19 +41,29 @@ export class AppHomeComponent implements OnInit {
   }
 
   commandAccept(): void {
-    //TODO correctly handle enum
     this.apiService
       .addEntry({
-        username: this.user.username,
+        user : {
+          username: this.user.username,
+          score : {
+            id: this.user.score?.id
+          }
+        },
         distance: this.kilometers,
         travelType: this.selectedVehicle,
-        timestamp: new Date()
+        timestamp: new Date(),
       } as IEntry)
       .pipe(
-        tap((user:IUser) => this.user = user),
-        tap((user:IUser) => this.messageService.add({severity:'info', summary:'New Score', detail:'Your new Score is: ' + user.score?.absScore}))
-      );
-
+        tap((user: IUser) => (this.user = user)),
+        tap((user: IUser) =>
+          this.messageService.add({
+            severity: 'info',
+            summary: 'New Score',
+            detail: 'Your new Score is: ' + user.score?.absScore,
+          })
+        )
+      ).subscribe();
+      this.resetDialogFields();
   }
 
   commandAbort(): void {

@@ -10,9 +10,10 @@ export interface IUser {
 }
 
 export interface IScoreData {
-  readonly beginDate?: Date;
-  readonly endDate?: Date;
-  readonly absScore: number;
-  readonly relScore: number;
-  readonly emScore: number;
+  id: string;
+  beginDate?: Date;
+  endDate?: Date;
+  absScore: number;
+  relScore: number;
+  emScore: number;
 }
