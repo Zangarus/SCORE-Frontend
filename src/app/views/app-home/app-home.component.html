@@ -6,59 +6,31 @@
     <div class="p-col">
       <div class="progressBar">
         Challenge
-        <p-progressBar
-          [value]="valueChallenge"
-          [showValue]="false"
-        ></p-progressBar>
+        <p-progressBar [value]="valueChallenge" [showValue]="false"></p-progressBar>
         Challenge Friend
-        <p-progressBar
-          [value]="valueChallengeFriend"
-          [showValue]="false"
-        ></p-progressBar>
+        <p-progressBar [value]="valueChallengeFriend" [showValue]="false"></p-progressBar>
       </div>
     </div>
   </div>
-  <div class="p-field p-col-12 p-md-4">
+  <div class="p-field p-col-12 p-md-4 p-text-center">
     <h3 class="p-mt-3">Score</h3>
-    <p-knob
-      [(ngModel)]="score"
-      [strokeWidth]="5"
-      [size]="200"
-      [readonly]="true"
-    ></p-knob>
+    <p-knob [(ngModel)]="user.score" [strokeWidth]="5" [size]="200" [readonly]="true"></p-knob>
   </div>
-
-  <p-button
-    (click)="showModalDialog()"
-    icon="pi pi-plus-circle"
-    label="Aktivität manuell eintragen"
-  ></p-button>
-  <p-dialog
-    header="Neue Strecke"
-    [(visible)]="displayModal"
-    [modal]="true"
-    [style]="{ width: '90vw' }"
-    [baseZIndex]="10000"
-    [draggable]="false"
-    [resizable]="false"
-  >
-    <p>Zurückgelegte Kilometer:</p>
-    <input type="text" pInputText [(ngModel)]="kilometers" /> km
-    <p>Fortbewegungsmittel:</p>
-    <p-dropdown
-      [options]="vehicles"
-      [(ngModel)]="selectedVehicle"
-      placeholder="Select a Vehicle"
-      optionLabel="name"
-      optionValue="code"
-    ></p-dropdown>
+  <div class="p-text-center">
+    <p-button (click)="showModalDialog()" icon="pi pi-plus-circle" label="Aktivität manuell eintragen"></p-button>
+  </div>
+  <p-dialog header="Neue Strecke" [(visible)]="displayModal" [modal]="true" [style]="{ width: '90vw' }"
+    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="p-grid">
+      <div class="p-col-6"><p>Fortbewegungsmittel:</p></div>
+      <div class="p-col-6"><p-dropdown [options]="vehicles" [(ngModel)]="selectedVehicle" placeholder="Select a Vehicle" optionLabel="name" optionValue="code"></p-dropdown></div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-8"><p>Zurückgelegte Kilometer:</p></div>
+      <div class="p-col-4"> <input type="text" style="width:48px" pInputText [(ngModel)]="kilometers"/>km</div>
+    </div>
     <ng-template pTemplate="footer">
-      <p-button
-        icon="pi pi-check"
-        (click)="displayModal = false"
-        label="Ok"
-        styleClass="p-button-text"
-      ></p-button>
+      <p-button icon="pi pi-check" (click)="commandExecModal()" label="Ok" styleClass="p-button-text"></p-button>
     </ng-template>
   </p-dialog>
 
