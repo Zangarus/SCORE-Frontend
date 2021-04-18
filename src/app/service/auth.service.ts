@@ -4,8 +4,6 @@ import { IUser } from '../entity/User';
 import { ApiService } from './http.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { EventBrokerService } from 'ng-event-broker';
-import { Events } from '../events/event.model';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
@@ -14,7 +12,6 @@ import { MessageService } from 'primeng/api';
 export class AuthService {
   constructor(
     private router: Router,
-    private eventService: EventBrokerService,
     private apiService: ApiService,
     private messageService: MessageService
   ) {}
@@ -29,7 +26,7 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap(data => this.eventService.publishEvent(Events.login)),
+      tap(data => /*TODO Login Event*/ {}),
       tap(data => this.messageService.add({severity:'info', summary:'Registrierung', detail:'Registrierung gesendet!'}))
     );
   }
@@ -40,7 +37,7 @@ export class AuthService {
         this.setUserNameIfAvail(user);
         this.setSession(resp.token);
       }),
-      tap((data) => this.eventService.publishEvent(Events.login)),
+      tap((data) => /*TODO Login Event*/ {}),
       tap(data => this.messageService.add({severity:'info', summary:'Anmeldung', detail:'Anmeldung gesendet!'}))
     );
   }
@@ -48,7 +45,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userrname');
-    this.eventService.publishEvent(Events.logout);
+    //TODO Logout EVENT
     this.router.navigate(['/welcome']);
     this.messageService.add({severity:'info', summary:'Abmeldung', detail:'Abmeldung gesendet!'})
   }
