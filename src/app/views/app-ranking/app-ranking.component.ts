@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { catchError, tap } from 'rxjs/operators';
 import { IUser } from 'src/app/entity/User';
 import { ApiService } from 'src/app/service/http.service';
 
@@ -7,9 +9,14 @@ import { ApiService } from 'src/app/service/http.service';
   selector: 'app-app-ranking',
   templateUrl: './app-ranking.component.html',
   styleUrls: ['./app-ranking.component.css'],
+  providers: [MessageService],
 })
 export class AppRankingComponent implements OnInit {
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   public users: IUser[] = [];
 
@@ -48,18 +55,33 @@ export class AppRankingComponent implements OnInit {
     ];
   }
 
-  private loadServerData(): void {
+  public loadServerData(): void {
+    console.log('loadServerData');
     this.apiService
       .findUsers()
-      .toPromise()
-      .then((item) => (this.users = item))
-      .catch((err) => this.handleError(err));
+      .pipe(
+        catchError((err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Loading Error',
+            detail: 'Ranking Data could not be loaded!',
+          });
+          return [];
+        })
+      )
+      .subscribe((data) => {
+        this.users = data;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Loaded',
+          detail: 'Ranking Data loaded!',
+        });
+      });
   }
 
   private handleError(err: any): any {
     console.log(err);
   }
-
 
   private checkLoginToken(): void {
     if (localStorage.getItem('token')) {

@@ -7,6 +7,21 @@
         [scrollable]="true"
         scrollHeight="flex"
       >
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <h5 class="p-m-0">Score Rankings</h5>
+            <span class="p-input-icon-left">
+              <button
+                pButton
+                pRipple
+                class="app-toolbar-icon"
+                type="button"
+                icon="pi pi-refresh"
+                (click)="loadServerData()"
+              ></button>
+            </span>
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
           <tr>
             <th>Score</th>
@@ -19,9 +34,9 @@
             <td>{{ product.firstName }} {{ product.lastName }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage" let-columns>
+        <ng-template pTemplate="emptymessage">
           <tr>
-            <td [attr.colspan]="columns.length">No ranking records found</td>
+            <td>No ranking records found</td>
           </tr>
         </ng-template>
       </p-table>

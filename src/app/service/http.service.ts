@@ -27,19 +27,20 @@ export class ApiService {
     return this.http.post<any>(this.apiUrl + 'user/login', user, this.httpOptions);
   }
 
-  findUser(username: string) {
-    return this.http.get<IUser>(this.apiUrl + 'user/' + username, this.httpOptions);
+  findUser(username: string) : Observable<IUser>{
+    return this.http.get<IUser>(this.apiUrl + 'user/detail/' + username, this.httpOptions);
   }
 
-  findUsers() {
-    return this.http.get<IUser[]>(this.apiUrl + 'user/list', this.httpOptions);
+  findUsers() : Observable<IUser[]>{
+    console.log("FindUsers2");
+    return this.http.get<IUser[]>(this.apiUrl + 'user/all', this.httpOptions);
   }
 
-  getSummary(id: string) {
+  getSummary(id: string) : Observable<any> {
     return this.http.get(this.apiUrl + 'user/summary' + id, this.httpOptions);
   }
 
-  addEntry(entry: IEntry) {
+  addEntry(entry: IEntry) : Observable<any>{
     return this.http.post(this.apiUrl + 'entry', entry, this.httpOptions);
   }
 }
