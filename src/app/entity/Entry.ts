@@ -1,14 +1,14 @@
 import { IUser } from "./User";
 
 export enum TravelType {
-    Foot = 1,
-    Bike,
-    eBike,
-    Car,
-    eCar,
-    Plane,
-    LocalTrain,
-    LongTrain
+  FOOT,
+  BIKE,
+  CAR,
+  ECAR,
+  EBIKE,
+  FARTRAIN,
+  NEARTRAIN,
+  PLANE
 }
 
 export interface IEntry {
@@ -16,6 +16,7 @@ export interface IEntry {
     timestamp: Date;
     distance: number;
     travelType: TravelType;
+    passenger: number;
 }
 
 export interface Vehicle {
